@@ -1,0 +1,21 @@
+<resources>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Strings related to Settings -->
+
+    <!-- Example General settings -->
+    <string name="pref_header_general">General</string>
+    <string name="pref_key_sort_order">sortOrder</string>
+    <string name="pref_title_sort_order">Sort movies by</string>
+
+    <string-array name="pref_sort_choices">
+        <item>Popularity</item>
+        <item>Rating</item>
+        <item>Release Date</item>
+    </string-array>
+    <string-array name="pref_sort_choice_values">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+    </string-array>
+</resources>
