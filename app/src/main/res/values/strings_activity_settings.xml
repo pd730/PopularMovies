@@ -5,8 +5,8 @@
 
     <!-- Example General settings -->
     <string name="pref_header_general">General</string>
-    <string name="pref_key_sort_order">sortOrder</string>
-    <string name="pref_title_sort_order">Sort movies by</string>
+    <string name="pref_key_sort_by">sortBy</string>
+    <string name="pref_title_sort_by">Sort movies by</string>
 
     <string-array name="pref_sort_choices">
         <item>Popularity</item>
@@ -14,8 +14,8 @@
         <item>Release Date</item>
     </string-array>
     <string-array name="pref_sort_choice_values">
-        <item>0</item>
-        <item>1</item>
-        <item>2</item>
+        <item>popularity.desc</item>
+        <item>vote_average.desc</item>
+        <item>release_date.desc</item>
     </string-array>
 </resources>

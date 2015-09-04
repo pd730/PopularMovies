@@ -4,8 +4,8 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
     <ListPreference
-        android:title="@string/pref_title_sort_order"
-        android:key="@string/pref_key_sort_order"
+        android:title="@string/pref_title_sort_by"
+        android:key="@string/pref_key_sort_by"
         android:defaultValue="0"
         android:entries="@array/pref_sort_choices"
         android:entryValues="@array/pref_sort_choice_values"
