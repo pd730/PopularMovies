@@ -13,11 +13,11 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        if (savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.main_container, new MainActivityFragment())
-                    .commit();
-        }
+//        if (savedInstanceState == null) {
+//            getSupportFragmentManager().beginTransaction()
+//                    .add(R.id.main_container, new MainActivityFragment())
+//                    .commit();
+//        }
     }
 
 
@@ -37,6 +37,7 @@ public class MainActivity extends ActionBarActivity {
             int id = item.getItemId();
 
             //noinspection SimplifiableIfStatement
+            //ToDo: Refresh view and go back to the view after selecting sort pref
             if (id == R.id.action_settings) {
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;

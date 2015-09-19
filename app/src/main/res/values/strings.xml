@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Basic app info -->
     <string name="app_name">Popular Movies</string>
     <string name="action_settings">Settings</string>
+
+    <!-- The Movie Database related strings -->
     <string name="url_tmdb">https://api.themoviedb.org/3/discover/movie?</string>
+    <!-- Place your Movie Database API Key in this string resource -->
+    <string name="api_key"></string>
 </resources>

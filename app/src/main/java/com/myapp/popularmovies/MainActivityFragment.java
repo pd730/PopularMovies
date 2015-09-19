@@ -5,16 +5,18 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
+import android.widget.GridView;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.ArrayList;
 
 
 /**
@@ -22,8 +24,10 @@ import java.net.URL;
  */
 public class MainActivityFragment extends Fragment {
 
-    private ArrayAdapter<String> movieAdapter;
+    private MovieAdapter movieAdapter;
+    private ArrayList<MovieInfo> movieList;
     private View rootView;
+    private GridView mgv;
 
     private final String defSortBy = "popularity.desc";
 
@@ -34,14 +38,22 @@ public class MainActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        getMovies();
+        if (savedInstanceState == null || !savedInstanceState.containsKey("movies")) {
+            getMovies();
+        }
+        else
+        {
+            // Get movieList from saved Parcel
+            movieList = savedInstanceState.getParcelableArrayList("movies");
+        }
     }
 
-//    @Override
-//    public void onStart() {
-//        super.onStart();
-//        getMovies();
-//    }
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        outState.putParcelableArrayList("movies", movieList);
+        super.onSaveInstanceState(outState);
+    }
 
     private void getMovies() {
         GetMoviesTask movieTask = new GetMoviesTask();
@@ -53,19 +65,21 @@ public class MainActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
-
-        //TODO
-        //movieAdapter = new ArrayAdapter<String>(getActivity(), R.layout.)
-
+        mgv = (GridView) rootView.findViewById(R.id.gv_movies);
         return rootView;
     }
 
-    public class GetMoviesTask extends AsyncTask<String, Integer, String[]> {
+    private void SetAdapterForGridView()
+    {
+
+    }
+
+    public class GetMoviesTask extends AsyncTask<String, Integer, ArrayList<MovieInfo>> {
 
         private final String LOG_TAG = GetMoviesTask.class.getSimpleName();
 
         @Override
-        public String[] doInBackground(String... parms) {
+        public ArrayList<MovieInfo> doInBackground(String... parms) {
 
             HttpURLConnection conn = null;
             BufferedReader reader = null;
@@ -107,14 +121,25 @@ public class MainActivityFragment extends Fragment {
                     return null;
                 }
                 movieJsonStr = buffer.toString();
+
+                JsonParser parser = new JsonParser(movieJsonStr);
+                movieList = parser.GetMovieInfoFromJson();
+                return movieList;
             }
             catch(Exception ex) {
-
+                Log.e(LOG_TAG, "Error ", ex);
             }
             finally {
 
             }
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(ArrayList result)
+        {
+            movieAdapter = new MovieAdapter(getActivity(), movieList);
+            mgv.setAdapter(movieAdapter);
         }
     }
 }
