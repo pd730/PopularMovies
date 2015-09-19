@@ -24,7 +24,7 @@ public class JsonParser {
         JSONObject moviesJson = new JSONObject(_jsonStr);
         JSONArray moviesArray = moviesJson.getJSONArray("results");
 
-        for (int i = 0; i < 2; i++) //moviesArray.length()
+        for (int i = 0; i < moviesArray.length(); i++)
         {
             JSONObject movieObject = moviesArray.getJSONObject(i);
             MovieInfo movieInfo = new MovieInfo();

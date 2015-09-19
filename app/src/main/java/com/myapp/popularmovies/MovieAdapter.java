@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -41,6 +42,9 @@ public class MovieAdapter extends ArrayAdapter<MovieInfo> {
                 ImageView ivMovie = (ImageView) convertView.findViewById(R.id.grid_item_image);
                 url = url + movie.imagePath;
                 Picasso.with(getContext()).load(url).into(ivMovie);
+
+                TextView tvMovie = (TextView) convertView.findViewById(R.id.grid_item_text);
+                tvMovie.setText(movie.title);
             }
         }
         catch (Exception ex) {

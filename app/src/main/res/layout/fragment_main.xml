@@ -1,9 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
 <GridView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/gv_movies"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="@dimen/gridview_horizontal_padding"
-        android:paddingTop="@dimen/gridview_vertical_padding"
-        tools:context=".MainActivityFragment"></GridView>
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/gv_movies"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:horizontalSpacing="@dimen/gridview_horizontal_padding"
+    android:verticalSpacing="@dimen/gridview_vertical_padding"
+    android:padding="@dimen/gridview_horizontal_padding"
+    android:numColumns="auto_fit"
+    android:stretchMode="columnWidth"
+    android:gravity="center"
+    android:background="#CCCCCC"
+    tools:context=".MainActivityFragment" />
 

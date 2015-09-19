@@ -1,8 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
+    </style>
+
+    <style name="BlueTheme">
+        <item name="android:background">#607D8B</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
 </resources>
