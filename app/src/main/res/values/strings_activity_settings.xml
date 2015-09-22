@@ -3,8 +3,6 @@
 
     <!-- Strings related to Settings -->
 
-    <!-- Example General settings -->
-    <string name="pref_header_general">General</string>
     <string name="pref_key_sort_by">sortBy</string>
     <string name="pref_title_sort_by">Sort movies by</string>
 

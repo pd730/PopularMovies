@@ -1,6 +1,7 @@
 package com.myapp.popularmovies;
 
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -49,6 +50,36 @@ public class MainActivityFragment extends Fragment {
     }
 
     @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        mgv = (GridView) rootView.findViewById(R.id.gv_movies);
+
+        // When creating from a savedInstanceState, can set the ArrayAdapter now instead of waiting
+        //  for the async task to complete
+        if (movieList != null)
+        {
+            setAdapterForGridView();
+        }
+        return rootView;
+    }
+
+    // Solution to adjust imageview grid size on screen rotation
+    //  From http://stackoverflow.com/questions/12927373/android-gridview-change-number-of-columns-depending-on-orientation
+    @Override
+    public void onConfigurationChanged(Configuration newConfig)
+    {
+
+    }
+
+    @Override
+    public void onResume()
+    {
+        // Coming back from settings, refresh list to show new sort preference
+        super.onResume();
+        getMovies();
+    }
+
+    @Override
     public void onSaveInstanceState(Bundle outState)
     {
         outState.putParcelableArrayList("movies", movieList);
@@ -63,22 +94,8 @@ public class MainActivityFragment extends Fragment {
         movieTask.execute(sortBy);
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_main, container, false);
-        mgv = (GridView) rootView.findViewById(R.id.gv_movies);
-
-        // When creating from a savedInstanceState, can set the ArrayAdapter now instead of waiting
-        //  for the async task to complete
-        if (movieList != null)
-        {
-            SetAdapterForGridView();
-        }
-        return rootView;
-    }
-
     // Sets the custom ArrayAdapter to the gridview
-    private void SetAdapterForGridView()
+    private void setAdapterForGridView()
     {
         movieAdapter = new MovieAdapter(getActivity(), movieList);
         mgv.setAdapter(movieAdapter);
@@ -148,7 +165,7 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList result)
         {
-            SetAdapterForGridView();
+            setAdapterForGridView();
         }
     }
 }
