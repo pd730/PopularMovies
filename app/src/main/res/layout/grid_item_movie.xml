@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    style="@style/BlueTheme">
+    style="@style/BlackTheme">
 
     <ImageView
         android:id="@+id/grid_item_image"
@@ -19,5 +19,5 @@
         android:layout_height="50dp"
         android:layout_below="@id/grid_item_image"
         android:gravity="center"
-        style="@style/BlueTheme"/>
+        style="@style/BlackTheme"/>
 </RelativeLayout>

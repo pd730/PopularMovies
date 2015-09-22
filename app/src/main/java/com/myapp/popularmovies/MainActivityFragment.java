@@ -55,6 +55,7 @@ public class MainActivityFragment extends Fragment {
         super.onSaveInstanceState(outState);
     }
 
+    // Get the saved sort preference and execute the async query to get the movies
     private void getMovies() {
         GetMoviesTask movieTask = new GetMoviesTask();
         SharedPreferences sortPref = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -66,12 +67,21 @@ public class MainActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.fragment_main, container, false);
         mgv = (GridView) rootView.findViewById(R.id.gv_movies);
+
+        // When creating from a savedInstanceState, can set the ArrayAdapter now instead of waiting
+        //  for the async task to complete
+        if (movieList != null)
+        {
+            SetAdapterForGridView();
+        }
         return rootView;
     }
 
+    // Sets the custom ArrayAdapter to the gridview
     private void SetAdapterForGridView()
     {
-
+        movieAdapter = new MovieAdapter(getActivity(), movieList);
+        mgv.setAdapter(movieAdapter);
     }
 
     public class GetMoviesTask extends AsyncTask<String, Integer, ArrayList<MovieInfo>> {
@@ -138,8 +148,7 @@ public class MainActivityFragment extends Fragment {
         @Override
         protected void onPostExecute(ArrayList result)
         {
-            movieAdapter = new MovieAdapter(getActivity(), movieList);
-            mgv.setAdapter(movieAdapter);
+            SetAdapterForGridView();
         }
     }
 }
