@@ -1,5 +1,6 @@
 package com.myapp.popularmovies;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.io.BufferedReader;
@@ -94,11 +96,20 @@ public class MainActivityFragment extends Fragment {
         movieTask.execute(sortBy);
     }
 
-    // Sets the custom ArrayAdapter to the gridview
+    // Sets the custom ArrayAdapter and onClickListener to the gridview
     private void setAdapterForGridView()
     {
         movieAdapter = new MovieAdapter(getActivity(), movieList);
         mgv.setAdapter(movieAdapter);
+        mgv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+           @Override
+           public void onItemClick(AdapterView<?> adapterView, View view, int i, long pos) {
+               MovieInfo movie = movieAdapter.getItem((int) pos);
+               Intent intent = new Intent(getActivity(), DetailActivity.class)
+                       .putExtra("Movie_Info", movie);
+               startActivity(intent);
+           }
+        });
     }
 
     public class GetMoviesTask extends AsyncTask<String, Integer, ArrayList<MovieInfo>> {

@@ -60,7 +60,7 @@ public class MovieInfo implements Parcelable {
         parcel.writeInt(voteCnt);
     }
 
-    public final Parcelable.Creator<MovieInfo> CREATOR = new Parcelable.Creator<MovieInfo>()
+    public static final Parcelable.Creator<MovieInfo> CREATOR = new Parcelable.Creator<MovieInfo>()
     {
         @Override
         public MovieInfo createFromParcel(Parcel parcel)
