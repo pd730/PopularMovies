@@ -36,6 +36,15 @@ public class DetailActivityFragment extends Fragment {
             ImageView ivPoster = (ImageView) rootView.findViewById(R.id.detail_iv_poster);
             url = url + movie.imagePath;
             Picasso.with(getActivity()).load(url).into(ivPoster);
+
+            TextView tvRelDate = (TextView) rootView.findViewById(R.id.detail_tv_relDate);
+            tvRelDate.setText(movie.relDate);
+
+            TextView tvRatings = (TextView) rootView.findViewById(R.id.detail_tv_ratings);
+            tvRatings.setText(movie.voteAvg == null ? "No ratings" : "Ratings: " + movie.voteAvg.toString() + "/10");
+
+            TextView tvOverview = (TextView) rootView.findViewById(R.id.detail_tv_overview);
+            tvOverview.setText(movie.overview);
         }
         return rootView;
     }

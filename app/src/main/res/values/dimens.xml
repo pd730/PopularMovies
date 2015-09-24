@@ -15,5 +15,6 @@
 
     <!-- Detail view -->
     <dimen name="detail_poster_height">250dp</dimen>
-    <dimen name="detail_poster_width">200dp</dimen>
+    <dimen name="detail_poster_width">190dp</dimen>
+    <dimen name="detail_margin">8dp</dimen>
 </resources>
