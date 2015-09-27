@@ -31,8 +31,7 @@ public class MainActivityFragment extends Fragment {
     private ArrayList<MovieInfo> movieList;
     private View rootView;
     private GridView mgv;
-
-    private final String defSortBy = "popularity.desc";
+    private String defSortBy;
 
     public MainActivityFragment() {
     }
@@ -41,13 +40,15 @@ public class MainActivityFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        if (savedInstanceState == null || !savedInstanceState.containsKey("movies")) {
+        defSortBy = getActivity().getString(R.string.default_sort_by);
+        if (savedInstanceState == null || !savedInstanceState.containsKey(getActivity().getString(R.string.instance_movies))) {
             getMovies();
         }
         else
         {
             // Get movieList from saved Parcel
-            movieList = savedInstanceState.getParcelableArrayList("movies");
+            movieList = savedInstanceState.getParcelableArrayList(getActivity().getString(R.string.instance_movies));
+//            mgv.onRestoreInstanceState(savedInstanceState.getParcelable("gvPosition"));
         }
     }
 
@@ -76,15 +77,17 @@ public class MainActivityFragment extends Fragment {
     @Override
     public void onResume()
     {
-        // Coming back from settings, refresh list to show new sort preference
         super.onResume();
+        // Coming back from settings, refresh list to show new sort preference
         getMovies();
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState)
     {
-        outState.putParcelableArrayList("movies", movieList);
+        outState.putParcelableArrayList(getActivity().getString(R.string.instance_movies), movieList);
+        // Attempting to save the scroll position of the gridview, didn't work
+        //outState.putParcelable("gvPosition", mgv.onSaveInstanceState());
         super.onSaveInstanceState(outState);
     }
 
@@ -106,7 +109,7 @@ public class MainActivityFragment extends Fragment {
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long pos) {
                MovieInfo movie = movieAdapter.getItem((int) pos);
                Intent intent = new Intent(getActivity(), DetailActivity.class)
-                       .putExtra("Movie_Info", movie);
+                       .putExtra(getActivity().getString(R.string.intent_movie_info), movie);
                startActivity(intent);
            }
         });
@@ -125,7 +128,7 @@ public class MainActivityFragment extends Fragment {
             String[] results;
 
             try {
-                UrlBuilder builder = new UrlBuilder(parms[0]);
+                UrlBuilder builder = new UrlBuilder(getActivity(), parms[0]);
                 URL url = builder.GetUrl();
 
                 if (url == null) {

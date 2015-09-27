@@ -9,12 +9,14 @@
     <dimen name="gridview_vertical_spacing">8dp</dimen>
 
     <!-- Gridview item size for movie posters -->
-    <dimen name="gridview_poster_height">200dp</dimen>
-    <dimen name="gridview_poster_width">180dp</dimen>
+    <dimen name="gridview_poster_height">225dp</dimen>
+    <dimen name="gridview_poster_width">185dp</dimen>
+    <dimen name="gridview_poster_height_landscape">225dp</dimen>
+    <dimen name="gridview_poster_width_landscape">150dp</dimen>
     <dimen name="gridview_title_height">50dp</dimen>
 
     <!-- Detail view -->
-    <dimen name="detail_poster_height">250dp</dimen>
-    <dimen name="detail_poster_width">190dp</dimen>
+    <dimen name="detail_poster_height">225dp</dimen>
+    <dimen name="detail_poster_width">150dp</dimen>
     <dimen name="detail_margin">8dp</dimen>
 </resources>

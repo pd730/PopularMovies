@@ -3,6 +3,11 @@ package com.myapp.popularmovies;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+/**
+ * Created by Paul
+ *
+ */
+
 public class DetailActivity extends AppCompatActivity {
 
     @Override

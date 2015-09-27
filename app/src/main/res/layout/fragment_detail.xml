@@ -25,7 +25,7 @@
         android:layout_toRightOf="@id/detail_iv_poster"
         android:textStyle="bold"
         android:textSize="@dimen/abc_text_size_title_material"
-        android:gravity="center"/>
+        android:gravity="left"/>
 
     <TextView
         android:id="@+id/detail_tv_relDate"
@@ -50,5 +50,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/detail_iv_poster"
-        android:gravity="left"/>
+        android:gravity="left"
+        android:scrollbars="vertical"/>
 </RelativeLayout>

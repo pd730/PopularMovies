@@ -8,6 +8,8 @@ import java.util.ArrayList;
 
 /**
  * Created by Paul on 9/13/2015.
+ *
+ * Parses a JSON string
  */
 public class JsonParser {
 

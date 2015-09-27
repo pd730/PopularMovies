@@ -7,6 +7,16 @@
 
     <!-- The Movie Database related strings -->
     <string name="url_tmdb">https://api.themoviedb.org/3/discover/movie?</string>
+    <string name="url_posters">http://image.tmdb.org/t/p/w185/</string>
+    <string name="default_sort_by">popularity.desc</string>
+
     <!-- Place your Movie Database API Key in this string resource -->
     <string name="api_key"></string>
+
+    <!--Strings used in code-->
+    <string name="intent_movie_info">Movie_Info</string>
+    <string name="no_ratings">No ratings</string>
+    <string name="no_release">Release TBD</string>
+    <string name="no_overview">No overview available</string>
+    <string name="instance_movies">movies</string>
 </resources>

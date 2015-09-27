@@ -18,10 +18,12 @@ import java.util.ArrayList;
  */
 public class MovieAdapter extends ArrayAdapter<MovieInfo> {
     private static final String LOG_TAG = MovieAdapter.class.getSimpleName();
+    private static String url;
 
     public MovieAdapter(Activity context, ArrayList<MovieInfo> movieList)
     {
         super(context, 0, movieList);
+        url = context.getString(R.string.url_posters);
     }
 
     @Override
@@ -31,7 +33,6 @@ public class MovieAdapter extends ArrayAdapter<MovieInfo> {
             // Get the current movie object
             MovieInfo movie = getItem(position);
             if (movie != null) {
-                String url = "http://image.tmdb.org/t/p/w185/";
 
                 // If the view doesn't exist yet, create it
                 if (convertView == null) {
@@ -40,9 +41,13 @@ public class MovieAdapter extends ArrayAdapter<MovieInfo> {
 
                 // Set the movie's poster image to the ImageView in the GridLayout
                 ImageView ivMovie = (ImageView) convertView.findViewById(R.id.grid_item_image);
-                url = url + movie.imagePath;
-                Picasso.with(getContext()).load(url).into(ivMovie);
-
+                Picasso.with(getContext())
+                        .load(url + movie.imagePath)
+                        .placeholder(R.drawable.hourglass)
+                        .error(R.drawable.no_image)
+                        .into(ivMovie);
+//                .resize(R.dimen.gridview_poster_width, R.dimen.gridview_poster_height)
+//                        .centerCrop()
                 TextView tvMovie = (TextView) convertView.findViewById(R.id.grid_item_text);
                 tvMovie.setText(movie.title);
             }

@@ -5,7 +5,10 @@ import android.os.Parcelable;
 
 /**
  * Created by Paul on 9/9/2015.
+ *
+ * Class to hold movie information retrieved from the API query
  */
+
 public class MovieInfo implements Parcelable {
     String title;
     String imagePath;
@@ -17,7 +20,6 @@ public class MovieInfo implements Parcelable {
 
     public MovieInfo()
     {
-
     }
 
     public MovieInfo(String mTitle, String mImage, String mOverview, String mRelDate, Long mPop, Double mVoteAvg, Integer mVoteCnt)
